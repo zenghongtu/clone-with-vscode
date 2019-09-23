@@ -1,0 +1,70 @@
+const githubDomain = 'github.com'
+const giteeDomain = 'gitee.com'
+const gitLabDomain = 'gitlab.com'
+
+const isInsiders = false;
+
+const btnText = 'Clone with VSCode'
+const scheme = isInsiders ? `vscode-insiders` : 'vscode';
+
+const setCloneWithVsCodeBtn = ({ parentSelector = () => { }, getUrl = () => { }, classList = [], style = {}, btnType = 'a' }) => {
+    const $parent = parentSelector()
+    if ($parent) {
+        const $btn = document.createElement(btnType)
+        $btn.classList.add(...classList)
+        Object.keys(style).forEach((name)=>{
+            $btn.style[name] = style[name]
+        })
+        $btn.innerText = btnText;
+        $btn.onclick = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const url = getUrl()
+            if(!url){
+                console.error('get error url: ',url)
+                return ;
+            }
+            window.open(`${scheme}://vscode.git/clone?url=${url}`)
+        };
+        $parent.appendChild($btn)
+
+    }
+}
+
+
+const href = location.href;
+
+let parentSelector;
+let getUrl;
+let classList;
+let style;
+let btnType;
+
+if (href.includes(githubDomain)) {
+    parentSelector = () => document.querySelector('.file-navigation')
+    getUrl = () => document.querySelector('.input-monospace').value
+    classList = ['btn', 'btn-sm', 'BtnGroup-item']
+    style = { marginLeft: '6px' }
+
+} else if (href.includes(giteeDomain)) {
+    parentSelector = () => document.querySelector('.git-project-right-actions')
+    getUrl = () => document.querySelector('#project_clone_url').value
+    classList = ['ui', 'button']
+    btnType = 'div'
+
+} else if (href.includes(gitLabDomain)) {
+    parentSelector = () => document.querySelector('.tree-controls')
+    getUrl = () => document.querySelector('#http_project_clone').value
+    classList = ['btn']
+
+}
+
+setCloneWithVsCodeBtn({
+    parentSelector, getUrl, classList,
+    style, btnType
+})
+
+
+
+
+

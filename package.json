@@ -1,0 +1,8 @@
+{
+	"name": "clone-with-vscode",
+	"version": "1.0.0",
+	"main": "index.js",
+	"repository": "https://github.com/zenghongtu/clone-with-vscode.git",
+	"author": "jasonzeng <zenghongtu@gmail.com>",
+	"license": "MIT"
+}
