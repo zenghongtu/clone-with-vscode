@@ -17,6 +17,8 @@ Support GitHub / Gitee / GitLab.
 
 ![](docs/preview.png)
 
+![](docs/s1.png)
+
 ## Next
 
 - [ ] open file
