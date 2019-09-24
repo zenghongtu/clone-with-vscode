@@ -6,24 +6,38 @@
   </head>
   <style>
     body {
-      display: flex;
-      align-items: center;
       width: 300px;
       height: 20px;
-      padding: 20px;
+      padding: 0px 20px 20px;
     }
-    input {
+    .git-url-wrap {
+      display: flex;
+      align-items: center;
+    }
+    .checkbox-wrap {
+      padding-bottom: 5px;
+    }
+
+    .input-git-url {
       flex: 1;
       height: 15px;
     }
   </style>
   <body>
-    <input
-      id="input-git-url"
-      type="text"
-      placeholder="enter a Git repository URL"
-    />
-    <button id="clone-btn">Clone</button>
+    <div class="checkbox-wrap">
+      <input type="checkbox" id="isInsiders" />
+      <label for="isInsiders">Use the Insiders Build</label>
+    </div>
+    <div class="git-url-wrap">
+      <input
+        id="input-git-url"
+        class="input-git-url"
+        type="text"
+        placeholder="enter a Git repository URL"
+      />
+      <button id="clone-btn">Clone</button>
+    </div>
+
     <script src="./popup.js"></script>
   </body>
 </html>

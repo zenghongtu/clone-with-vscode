@@ -2,10 +2,20 @@ const githubDomain = 'github.com'
 const giteeDomain = 'gitee.com'
 const gitLabDomain = 'gitlab.com'
 
-const isInsiders = false;
+const defaultOptions = {
+    isInsiders: false,
+};
+
+
+function getOptions() {
+    return new Promise((resolve, reject) => {
+        chrome.storage.sync.get(defaultOptions, (options) => {
+            resolve(options);
+        });
+    });
+}
 
 const btnText = 'Clone with VSCode'
-const scheme = isInsiders ? `vscode-insiders` : 'vscode';
 
 const setCloneWithVsCodeBtn = ({ parentSelector = () => { }, getUrl = () => { }, classList = [], style = {}, btnType = 'a' }) => {
     const $parent = parentSelector()
@@ -16,7 +26,7 @@ const setCloneWithVsCodeBtn = ({ parentSelector = () => { }, getUrl = () => { },
             $btn.style[name] = style[name]
         })
         $btn.innerText = btnText;
-        $btn.onclick = (e) => {
+        $btn.onclick = async (e) => {
             e.preventDefault();
             e.stopPropagation();
             const url = getUrl()
@@ -24,6 +34,9 @@ const setCloneWithVsCodeBtn = ({ parentSelector = () => { }, getUrl = () => { },
                 console.error('get error url: ',url)
                 return ;
             }
+            const {isInsiders} =await getOptions()
+      
+            const scheme = isInsiders ? `vscode-insiders` : 'vscode';
             window.open(`${scheme}://vscode.git/clone?url=${url}`)
         };
         $parent.appendChild($btn)

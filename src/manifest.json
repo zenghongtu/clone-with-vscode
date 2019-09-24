@@ -1,6 +1,6 @@
 {
   "description": "one-click clone with VSCode",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "name": "Clone with VSCode",
   "author": "zenghongtu <zenghongtu@gmail.com>",
   "manifest_version": 2,
@@ -11,7 +11,7 @@
     "128": "icons/128x128.png",
     "256": "icons/256x256.png"
   },
-  "permissions": [],
+  "permissions": ["storage", "clipboardWrite", "unlimitedStorage"],
   "browser_action": {
     "default_icon": "icons/64x64.png",
     "default_title": "Clone with VSCode",
