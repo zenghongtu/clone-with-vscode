@@ -1,6 +1,6 @@
 {
   "description": "one-click clone with VSCode",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "name": "Clone with VSCode",
   "author": "zenghongtu <zenghongtu@gmail.com>",
   "manifest_version": 2,
