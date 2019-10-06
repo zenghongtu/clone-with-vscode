@@ -1,43 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Clone with VSCode</title>
-  </head>
-  <style>
-    body {
-      width: 300px;
-      height: 20px;
-      padding: 0px 20px 20px;
-    }
-    .git-url-wrap {
-      display: flex;
-      align-items: center;
-    }
-    .checkbox-wrap {
-      padding-bottom: 5px;
-    }
+    <head>
+        <meta charset="UTF-8" />
+        <title>Clone with VSCode</title>
+    </head>
+    <style>
+        body {
+            width: 300px;
+            height: 45px;
+            padding: 0px 20px 20px;
+        }
+        .git-url-wrap {
+        }
+        .checkbox-wrap {
+            padding-bottom: 5px;
+        }
 
-    .input-git-url {
-      flex: 1;
-      height: 15px;
-    }
-  </style>
-  <body>
-    <div class="checkbox-wrap">
-      <input type="checkbox" id="isInsiders" />
-      <label for="isInsiders">Use the Insiders Build</label>
-    </div>
-    <div class="git-url-wrap">
-      <input
-        id="input-git-url"
-        class="input-git-url"
-        type="text"
-        placeholder="enter a Git repository URL"
-      />
-      <button id="clone-btn">Clone</button>
-    </div>
+        .input-git-url {
+            width: 230px;
+            height: 15px;
+        }
+    </style>
+    <body>
+        <div class="checkbox-wrap">
+            <input type="checkbox" id="bySSH" />
+            <label for="bySSH">Use SSH (default: HTTPS)</label>
+        </div>
 
-    <script src="./popup.js"></script>
-  </body>
+        <div class="checkbox-wrap">
+            <input type="checkbox" id="isInsiders" />
+            <label for="isInsiders">Use the Insiders Build</label>
+        </div>
+
+        <div class="git-url-wrap">
+            <input
+                id="input-git-url"
+                class="input-git-url"
+                type="text"
+                placeholder="Enter a Git repository URL"
+            />
+            <button id="clone-btn">Clone</button>
+        </div>
+
+        <script src="./popup.js"></script>
+    </body>
 </html>

@@ -3,7 +3,8 @@ const giteeDomain = 'gitee.com';
 const gitLabDomain = 'gitlab.com';
 
 const defaultOptions = {
-    isInsiders: false
+    isInsiders: false,
+    bySSH: false
 };
 
 function getOptions() {
@@ -48,11 +49,16 @@ const setCloneWithVsCodeBtn = ({
                 console.error('get error url: ', url);
                 return;
             }
-            const { isInsiders } = await getOptions();
+            const { isInsiders, bySSH } = await getOptions();
 
             const scheme = isInsiders ? `vscode-insiders` : 'vscode';
+            let gitCloneUrl = url;
+            if (bySSH) {
+                const arr = url.split('/');
+                gitCloneUrl = `git@${arr[2]}:${arr[3]}/${arr[4]}`;
+            }
 
-            const href = `${scheme}://vscode.git/clone?url=${url}`;
+            const href = `${scheme}://vscode.git/clone?url=${gitCloneUrl}`;
 
             openUrl(href);
         };
